@@ -1,0 +1,92 @@
+:root { --nav-height: clamp(76px, 7.25vw, 134px); --nav-bg: #101b2d; --focus: #79e2d6; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: #071321; }
+body { margin: 0; color: #13233c; background: #eef4f6; font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+main { padding-top: var(--nav-height); }
+button, a { font: inherit; }
+img { display: block; }
+.sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
+.skip-link { position: fixed; z-index: 100; left: 18px; top: 18px; padding: 10px 14px; color: #fff; background: #111827; transform: translateY(-160%); }
+.skip-link:focus { transform: none; }
+.hc-global-nav { position: fixed; z-index: 80; inset: 0 0 auto; height: var(--nav-height); padding: 0 clamp(42px, 5vw, 96px); display: flex; align-items: center; justify-content: space-between; color: #f7f9fd; border-bottom: 1px solid rgba(174,188,211,.16); background: var(--nav-bg); }
+.hc-nav-brand { display: flex; align-items: baseline; gap: .35em; color: inherit; text-decoration: none; white-space: nowrap; }
+.hc-nav-brand strong, .hc-nav-brand span { font: 600 clamp(20px, 1.78vw, 34px)/1 "Helvetica Neue", Arial, sans-serif; letter-spacing: .02em; }
+.hc-global-nav nav { display: flex; align-items: center; gap: clamp(46px, 5vw, 92px); height: 100%; }
+.hc-resume-link, .hc-works-button { color: #cbd2df; font-size: clamp(18px, 1.35vw, 25px); font-weight: 400; text-decoration: none; white-space: nowrap; transition: color .2s ease; }
+.hc-resume-link:hover, .hc-resume-link:focus-visible, .hc-works-button:hover, .hc-works-button:focus-visible { color: #fff; }
+.hc-works-nav { position: relative; height: 100%; display: flex; align-items: center; }
+.hc-works-button { padding: 0; display: flex; align-items: center; gap: 14px; border: 0; background: none; cursor: pointer; }
+.hc-works-button i { width: 11px; height: 11px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-3px) rotate(45deg); transition: transform .2s ease; }
+.hc-works-nav.is-open .hc-works-button i { transform: translateY(3px) rotate(225deg); }
+.hc-works-menu { position: absolute; right: -34px; top: calc(100% - 1px); width: 330px; padding: 15px 0; border: 1px solid rgba(174,188,211,.16); background: var(--nav-bg); box-shadow: 0 20px 45px rgba(5,12,25,.26); opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .2s ease, transform .2s ease, visibility .2s; }
+.hc-works-menu a { padding: 15px 24px; display: grid; grid-template-columns: 38px 1fr; align-items: center; color: #cbd2df; font-size: 16px; line-height: 1.4; text-decoration: none; }
+.hc-works-menu a span { color: #71809b; font: 500 12px/1 "Helvetica Neue", Arial, sans-serif; letter-spacing: .08em; }
+.hc-works-menu a:hover, .hc-works-menu a:focus-visible, .hc-works-menu a[aria-current="page"] { color: #fff; background: rgba(255,255,255,.055); }
+.hc-works-nav:hover .hc-works-menu, .hc-works-nav:focus-within .hc-works-menu, .hc-works-nav.is-open .hc-works-menu { opacity: 1; visibility: visible; transform: none; }
+.hc-screen { position: relative; width: 100%; aspect-ratio: 16 / 9; min-height: 0; overflow: hidden; scroll-margin-top: var(--nav-height); background: #eef4f6; }
+.hc-canvas { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; }
+.hc-canvas > img { width: 100%; height: 100%; object-fit: cover; transition: opacity .16s ease, transform .34s cubic-bezier(.2,.7,.2,1); }
+.hc-interactive.is-switching .hc-canvas > img { opacity: .42; transform: scale(1.003); }
+.hc-diagnosis-flow { aspect-ratio: 3840 / 3760; }
+.hc-outcome { aspect-ratio: 2560 / 1180; }
+.diagnosis-card-masks { position: absolute; z-index: 3; inset: 0; pointer-events: none; }
+.diagnosis-card-mask { position: absolute; width: 11.98%; height: 6.52%; background: #f3f7fa; opacity: 1; transition: opacity .7s cubic-bezier(.22,.61,.36,1); }
+.diagnosis-card-mask.is-revealed { opacity: 0; }
+.diagnosis-card-mask.card-1 { left: 41.93%; }
+.diagnosis-card-mask.card-2 { left: 65.89%; transition-delay: .14s; }
+.diagnosis-card-mask.group-1 { top: 22.07%; }
+.diagnosis-card-mask.group-2 { top: 70.74%; }
+.hc-explore-cue { position: absolute; z-index: 4; left: 50%; top: 85.65%; width: 6.25%; height: 9.9%; transform: translateX(-50%); }
+.hc-explore-cue::before { content: ""; position: absolute; left: 50%; top: 29%; width: 52%; aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(225,249,247,.44); box-shadow: 0 0 0 10px rgba(94,218,207,.08), 0 0 34px 16px rgba(94,218,207,.23); animation: cue-breathe 2.8s ease-in-out infinite; }
+.hc-explore-cue:focus-visible { outline: 3px solid #fff; outline-offset: 5px; }
+@keyframes cue-breathe { 0%,100% { opacity: .52; transform: translate(-50%,-50%) scale(.88); } 50% { opacity: 1; transform: translate(-50%,-50%) scale(1.12); } }
+.hc-hotspots button, .booking-overview-hotspots button, .live-state-hotspots button { position: absolute; z-index: 5; padding: 0; border: 0; border-radius: 18px; color: transparent; background: transparent; cursor: pointer; }
+.hc-hotspots button span, .booking-overview-hotspots button span, .live-state-hotspots button span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+.hc-hotspots button:hover, .booking-overview-hotspots button:hover, .live-state-hotspots button:hover { box-shadow: inset 0 0 0 1px rgba(92,222,210,.24), 0 0 24px rgba(92,222,210,.12); }
+.hc-selection-hotspots .selection-hotspot:hover { box-shadow: none; }
+.hc-hotspots button:focus-visible, .booking-overview-hotspots button:focus-visible, .live-state-hotspots button:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.selection-hotspot { left: 75.4%; width: 17.8%; height: 6.5%; }
+.selection-hotspot.drag { top: 32.64%; }
+.selection-hotspot.pinch { top: 44.44%; }
+.selection-hotspot.organ { top: 56.25%; }
+.selection-hotspot.card { top: 68.06%; }
+.booking-hotspot { top: 30.093%; width: 13.542%; height: 52.083%; border-radius: 2.2% !important; }
+.booking-hotspot.step-1 { left: 29.036%; }
+.booking-hotspot.step-2 { left: 52.083%; }
+.booking-hotspot.step-3 { left: 75.13%; }
+.hc-booking:not([data-state="overview"]) .booking-overview-hotspots { display: none; }
+.booking-close { position: absolute; z-index: 8; right: 4.7%; top: 20.6%; min-width: 8.2%; height: 3.75%; padding: 0 1.15%; border: 1px solid rgba(142,233,216,.54); border-radius: 999px; color: #c8f5ed; background: rgba(5,20,32,.72); font-size: clamp(11px, .92vw, 17px); cursor: pointer; backdrop-filter: blur(10px); }
+.booking-close:hover, .booking-close:focus-visible { color: #071321; background: #8de9d8; outline: none; }
+.booking-close[hidden] { display: none; }
+.live-state-hotspots button { left: 3.854%; width: 16.146%; height: 3.148%; }
+.live-state-hotspots button:nth-child(1) { top: 63.611%; }
+.live-state-hotspots button:nth-child(2) { top: 67.87%; }
+.live-state-hotspots button:nth-child(3) { top: 72.13%; }
+.outcome-link { position: absolute; z-index: 5; }
+.outcome-link.back { left: 4%; top: 89.2%; width: 25%; height: 8.8%; }
+.outcome-link.next { left: 59%; top: 88.3%; width: 37%; height: 10.5%; }
+.outcome-link:focus-visible { outline: 3px solid var(--focus); outline-offset: -6px; }
+@media (max-width: 720px), (max-aspect-ratio: 4/5) {
+  :root { --nav-height: 64px; }
+  .hc-global-nav { height: var(--nav-height); padding: 0 18px; }
+  .hc-nav-brand strong, .hc-nav-brand span { font-size: 16px; }
+  .hc-nav-brand span { display: none; }
+  .hc-global-nav nav { gap: 26px; }
+  .hc-resume-link, .hc-works-button { font-size: 15px; }
+  .hc-works-button { gap: 9px; }
+  .hc-works-button i { width: 8px; height: 8px; }
+  .hc-works-menu { right: -74px; width: min(286px, calc(100vw - 32px)); }
+  .hc-works-menu a { padding: 14px 18px; font-size: 14px; }
+  .hc-screen { width: 100%; height: 540px; aspect-ratio: auto; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: rgba(97,213,201,.45) #071321; }
+  .hc-canvas { position: relative; width: 960px; height: 540px; }
+  .hc-hero { height: 540px; }
+  .hc-diagnosis-flow { height: 940px; }
+  .hc-diagnosis-flow .hc-canvas { height: 940px; }
+  .hc-outcome, .hc-outcome .hc-canvas { height: 443px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hc-canvas > img { transition: none; }
+  .hc-explore-cue::before { animation: none; }
+  .diagnosis-card-mask { transition: none; }
+}
