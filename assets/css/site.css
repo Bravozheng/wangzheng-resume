@@ -147,7 +147,14 @@ h1, h2, h3 { line-height: 1.18; }
 .footer-top { display: flex; align-items: center; justify-content: space-between; gap: 60px; padding-bottom: 80px; }
 .footer-top h2 { margin-bottom: 16px; font-size: clamp(42px, 4vw, 70px); }
 .footer-top p { color: #9caeb6; }
-.outline-link { display: inline-flex; align-items: center; justify-content: center; gap: 30px; min-width: 250px; min-height: 64px; padding: 14px 28px; border: 1px solid rgba(175,193,200,.52); transition: border-color .2s, background .2s; }
+.footer-actions { width: min(330px, 100%); display: grid; gap: 12px; flex: 0 0 auto; }
+.portfolio-download { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 28px; padding: 16px 22px; color: var(--navy); background: #e8f0f2; transition: background .2s, transform .2s var(--ease); }
+.portfolio-download > span { display: grid; gap: 2px; }
+.portfolio-download strong { font-size: 16px; font-weight: 650; }
+.portfolio-download small { color: #536b76; font-size: 12px; }
+.portfolio-download svg { width: 22px; height: 22px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.portfolio-download:hover, .portfolio-download:focus-visible { background: #fff; transform: translateY(-2px); outline: 2px solid #8de2dc; outline-offset: 3px; }
+.outline-link { width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 30px; min-height: 64px; padding: 14px 28px; border: 1px solid rgba(175,193,200,.52); transition: border-color .2s, background .2s; }
 .outline-link:hover, .outline-link:focus-visible { border-color: var(--white); background: rgba(255,255,255,.05); }
 .footer-bottom { display: flex; justify-content: space-between; padding-top: 30px; color: #758891; border-top: 1px solid rgba(175,193,200,.16); font-size: 13px; }
 
@@ -282,7 +289,7 @@ h1, h2, h3 { line-height: 1.18; }
   .timeline div { align-items: end; }
   .timeline strong { font-size: 22px; }
   .footer-top { display: block; padding-bottom: 62px; }
-  .outline-link { margin-top: 34px; }
+  .footer-actions { margin-top: 34px; }
   .footer-bottom { display: grid; gap: 8px; }
   .project-hero { min-height: auto; padding-top: 126px; }
   .project-title-row { display: block; margin-bottom: 34px; }

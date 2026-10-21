@@ -6,7 +6,8 @@ bytes	path
 15141	assets/css/design-leadership.css
 8695	assets/css/health-check.css
 4962	assets/css/portfolio-shell.css
-23048	assets/css/site.css
+23886	assets/css/site.css
+9744177	assets/downloads/Wang-Zheng-Portfolio-2026.pdf
 36650	assets/images/bianque/code/ai-assistant.webp
 82692	assets/images/bianque/code/ai-prescription.webp
 149192	assets/images/bianque/code/ai-workstation-tight.webp
@@ -128,8 +129,9 @@ bytes	path
 3346270	assets/videos/design-leadership/case2-family02.mp4
 3691539	assets/videos/design-leadership/case3-pingan.mp4
 3995823	assets/videos/design-leadership/case4-clinic.m4v
-4164	docs/DEPLOYMENT-AUDIT.md
+4298	docs/DEPLOYMENT-AUDIT.md
 6743	docs/DESIGN.md
+9431	docs/FILE-MANIFEST.tsv
 4601	docs/PRODUCT.md
 3022	docs/design-qa.md
 3365	docs/planning/三个重点项目-整体规划-v1.md
@@ -163,7 +165,7 @@ bytes	path
 10745	docs/能力储备清单.md
 11918	docs/项目页面确认清单.md
 260	favicon.svg
-9630	index.html
+10059	index.html
 1415	portfolio-qa.md
 17669	work/bianque/index.html
 2279	work/design-leadership/design-qa.md
