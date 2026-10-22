@@ -119,13 +119,39 @@
 
   const metricReveal = document.querySelector('[data-metric-reveal]');
   if (metricReveal) {
+    const metricValues = [...metricReveal.querySelectorAll('[data-outcome-value]')];
+    const setMetricText = (element, value) => {
+      const decimals = Number(element.dataset.outcomeDecimals) || 0;
+      const number = element.querySelector('.outcome-metric-number');
+      number.textContent = decimals
+        ? value.toFixed(decimals)
+        : Math.round(value).toLocaleString('en-US');
+    };
+    const finishMetrics = () => metricValues.forEach((element) => {
+      setMetricText(element, Number(element.dataset.outcomeValue));
+    });
+    const runMetrics = () => {
+      const duration = 1300;
+      const start = performance.now();
+      const update = (now) => {
+        const progress = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        metricValues.forEach((element) => {
+          setMetricText(element, Number(element.dataset.outcomeValue) * eased);
+        });
+        if (progress < 1) window.requestAnimationFrame(update);
+        else finishMetrics();
+      };
+      window.requestAnimationFrame(update);
+    };
     if (reduceMotion || !('IntersectionObserver' in window)) {
-      metricReveal.classList.add('is-metrics-visible');
+      finishMetrics();
     } else {
+      metricValues.forEach((element) => setMetricText(element, 0));
       const metricObserver = new IntersectionObserver(([entry], observer) => {
         if (!entry.isIntersecting) return;
-        metricReveal.classList.add('is-metrics-visible');
         observer.unobserve(metricReveal);
+        runMetrics();
       }, { threshold: .32, rootMargin: '0px 0px -6% 0px' });
       metricObserver.observe(metricReveal);
     }
