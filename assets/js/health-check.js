@@ -20,39 +20,101 @@
   document.querySelectorAll('[data-state-switcher]').forEach((switcher) => {
     const image = switcher.querySelector('[data-state-image]');
     const controls = [...switcher.querySelectorAll('[data-state-control]')];
+    const autoplayDelay = Number(switcher.dataset.autoplay) || 0;
+    const crossfade = switcher.hasAttribute('data-crossfade') && !reduceMotion;
+    const transition = Number(switcher.dataset.transition) || 650;
+    const layers = [image];
+    let activeLayer = image;
+    let switching = false;
+
+    if (crossfade) {
+      const alternate = image.cloneNode(false);
+      alternate.removeAttribute('data-state-image');
+      alternate.alt = '';
+      alternate.setAttribute('aria-hidden', 'true');
+      image.classList.add('hc-state-frame', 'is-active');
+      alternate.classList.add('hc-state-frame');
+      switcher.style.setProperty('--state-transition', `${transition}ms`);
+      image.after(alternate);
+      layers.push(alternate);
+    }
+
     [...new Set(controls.map((control) => control.dataset.src))].forEach((src) => { const preload = new Image(); preload.src = src; });
     const activate = (control) => {
       const state = control.dataset.stateControl;
-      if (!state || switcher.dataset.state === state) return;
-      switcher.dataset.state = state;
-      controls.forEach((item) => {
-        const active = item.dataset.stateControl === state;
-        if (item.getAttribute('role') === 'tab') item.setAttribute('aria-selected', String(active));
-        if (item.hasAttribute('aria-pressed')) item.setAttribute('aria-pressed', String(active));
-      });
-      const commit = () => {
+      if (!state || switcher.dataset.state === state || switching) return;
+
+      const updateState = () => {
+        switcher.dataset.state = state;
+        controls.forEach((item) => {
+          const active = item.dataset.stateControl === state;
+          if (item.getAttribute('role') === 'tab') item.setAttribute('aria-selected', String(active));
+          if (item.hasAttribute('aria-pressed')) item.setAttribute('aria-pressed', String(active));
+        });
+      };
+
+      if (!crossfade) {
+        updateState();
         image.src = control.dataset.src;
         image.alt = control.dataset.alt;
-        if (image.decode) image.decode().catch(() => {}).finally(() => switcher.classList.remove('is-switching'));
-        else switcher.classList.remove('is-switching');
+        return;
+      }
+
+      switching = true;
+      const incoming = layers.find((layer) => layer !== activeLayer);
+      incoming.src = control.dataset.src;
+      const reveal = () => {
+        updateState();
+        incoming.alt = control.dataset.alt;
+        incoming.removeAttribute('aria-hidden');
+        activeLayer.alt = '';
+        activeLayer.setAttribute('aria-hidden', 'true');
+        activeLayer.classList.add('is-underlay');
+        activeLayer.classList.remove('is-active');
+        incoming.classList.add('is-active');
+        const outgoing = activeLayer;
+        activeLayer = incoming;
+        window.setTimeout(() => {
+          outgoing.classList.remove('is-underlay');
+          switching = false;
+        }, transition);
       };
-      if (reduceMotion || switcher.id === 'selection') commit();
-      else { switcher.classList.add('is-switching'); window.setTimeout(commit, 120); }
+      if (incoming.decode) incoming.decode().catch(() => {}).finally(() => window.requestAnimationFrame(reveal));
+      else incoming.addEventListener('load', () => window.requestAnimationFrame(reveal), { once: true });
     };
+
     let autoTimer = 0;
-    const resetAutoPlay = () => {
-      if (switcher.id !== 'selection' || reduceMotion) return;
+    let inView = !('IntersectionObserver' in window);
+    const stopAutoPlay = () => {
       window.clearInterval(autoTimer);
+      autoTimer = 0;
+    };
+    const startAutoPlay = () => {
+      if (!autoplayDelay || reduceMotion || !inView || autoTimer) return;
       autoTimer = window.setInterval(() => {
         const currentIndex = controls.findIndex((control) => control.dataset.stateControl === switcher.dataset.state);
         activate(controls[(currentIndex + 1) % controls.length]);
-      }, 5000);
+      }, autoplayDelay);
+    };
+    const resetAutoPlay = () => {
+      stopAutoPlay();
+      startAutoPlay();
     };
     controls.forEach((control) => control.addEventListener('click', () => {
       activate(control);
       resetAutoPlay();
     }));
-    resetAutoPlay();
+
+    if (autoplayDelay && !reduceMotion && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting;
+        if (inView) startAutoPlay();
+        else stopAutoPlay();
+      }, { threshold: .35 });
+      observer.observe(switcher);
+    } else {
+      startAutoPlay();
+    }
   });
 
   const revealMasks = [...document.querySelectorAll('[data-reveal-mask]')];

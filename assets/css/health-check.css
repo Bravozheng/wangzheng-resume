@@ -26,7 +26,9 @@ img { display: block; }
 .hc-screen { position: relative; width: 100%; aspect-ratio: 16 / 9; min-height: 0; overflow: hidden; scroll-margin-top: var(--nav-height); background: #eef4f6; }
 .hc-canvas { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; }
 .hc-canvas > img { width: 100%; height: 100%; object-fit: cover; transition: opacity .16s ease, transform .34s cubic-bezier(.2,.7,.2,1); }
-.hc-interactive.is-switching .hc-canvas > img { opacity: .42; transform: scale(1.003); }
+.hc-canvas > .hc-state-frame { position: absolute; inset: 0; z-index: 1; opacity: 0; pointer-events: none; transition: opacity var(--state-transition, 650ms) ease; }
+.hc-state-frame.is-underlay { z-index: 1; opacity: 1; }
+.hc-state-frame.is-active { z-index: 2; opacity: 1; }
 .hc-diagnosis-flow { aspect-ratio: 3840 / 3760; }
 .hc-outcome { aspect-ratio: 2560 / 1180; }
 .diagnosis-card-masks { position: absolute; z-index: 3; inset: 0; pointer-events: none; }
