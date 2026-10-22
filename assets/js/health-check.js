@@ -117,6 +117,20 @@
     }
   });
 
+  const metricReveal = document.querySelector('[data-metric-reveal]');
+  if (metricReveal) {
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      metricReveal.classList.add('is-metrics-visible');
+    } else {
+      const metricObserver = new IntersectionObserver(([entry], observer) => {
+        if (!entry.isIntersecting) return;
+        metricReveal.classList.add('is-metrics-visible');
+        observer.unobserve(metricReveal);
+      }, { threshold: .32, rootMargin: '0px 0px -6% 0px' });
+      metricObserver.observe(metricReveal);
+    }
+  }
+
   const revealMasks = [...document.querySelectorAll('[data-reveal-mask]')];
   if (reduceMotion || !('IntersectionObserver' in window)) {
     revealMasks.forEach((mask) => mask.classList.add('is-revealed'));
