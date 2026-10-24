@@ -206,12 +206,14 @@ img { display: block; max-width: 100%; }
 .ai-sop-head > div { padding-bottom: 3px; }
 .ai-sop-head h3 { font-size: 27px; font-weight: 500; line-height: 1.35; }
 .ai-sop-head > div p { margin-top: 13px !important; color: var(--muted); font-size: 18px; line-height: 1.6; }
-.ai-sop-list { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 38px; }
+.ai-interaction-note { margin-top: 18px !important; padding: 13px 15px 13px 17px; display: grid; grid-template-columns: 150px 1fr; gap: 14px; align-items: center; color: var(--muted); border-left: 3px solid var(--blue); background: #eef1ff; font-size: 15px; line-height: 1.5; }
+.ai-interaction-note strong { color: #4655e8; font-weight: 600; }
+.ai-sop-list { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 38px; }
 .ai-sop-list span { position: relative; padding: 16px 0 16px 22px; border-bottom: 1px solid #dfe4f1; color: var(--ink); font-size: 20px; }
 .ai-sop-list span::before { content: ""; position: absolute; left: 0; top: 50%; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); transform: translateY(-50%); }
 .ai-sop-list span:nth-child(3n+2)::before { background: #49a5a2; }
 .ai-sop-list span:nth-child(3n)::before { background: #38446a; }
-.ai-sop-result { margin-top: 26px !important; padding-left: 18px; border-left: 3px solid var(--blue); color: var(--muted); font-size: 19px; line-height: 1.6; }
+.ai-sop-result { margin-top: 22px !important; padding-left: 18px; border-left: 3px solid var(--blue); color: var(--muted); font-size: 19px; line-height: 1.6; }
 
 /* 09 / patents */
 .patents { background: var(--soft); }
@@ -316,7 +318,7 @@ img { display: block; max-width: 100%; }
   .strategy-grid { position: static; width: 100%; margin-top: 48px; grid-template-columns: 1fr; gap: 54px; }.strategy-grid article, .strategy-image { width: 100%; }.strategy-foundation { position: static; width: 100%; height: 112px; margin-top: 50px; text-align: center; }.strategy-foundation strong { font-size: 26px; }.strategy-foundation span { font-size: 15px; }
   .components-note { position: static; margin-top: 22px !important; font-size: 17px; }.components h3 { position: static; margin-top: 45px; }.components-workstation, .components-patient, .components-metrics { position: static; width: 100%; height: auto; margin-top: 18px; }.components-workstation { aspect-ratio: 1.5; }.components-patient { min-height: 140px; }.components-metrics { grid-template-columns: 1fr; }
   .health-points { position: static; width: 100%; margin-top: 48px; }.health-anatomy { position: static; width: 80%; height: auto; margin: 10px auto 0; }.health-legend { position: static; margin-top: 12px !important; }.health-showcase { position: static; width: 100%; margin-top: 50px; }.health-panels { grid-template-columns: 1fr; }.health-panels img { height: 570px; }
-  .ai-note { margin-top: 24px !important; }.ai-label { position: static; margin-top: 45px !important; }.ai-screen { position: static; width: 100%; height: auto; aspect-ratio: 1.5; margin-top: 18px; }.ai-flow { position: static; width: 100%; margin-top: 48px; }.ai-sop-head { grid-template-columns: 132px 1fr; }.ai-sop-head > strong { font-size: 72px; }.ai-sop-head h3 { font-size: 22px; }.ai-sop-head > div p { font-size: 16px; }.ai-sop-list { grid-template-columns: 1fr; }.ai-sop-list span { font-size: 17px; }
+  .ai-note { margin-top: 24px !important; }.ai-label { position: static; margin-top: 45px !important; }.ai-screen { position: static; width: 100%; height: auto; aspect-ratio: 1.5; margin-top: 18px; }.ai-flow { position: static; width: 100%; margin-top: 48px; }.ai-sop-head { grid-template-columns: 132px 1fr; }.ai-sop-head > strong { font-size: 72px; }.ai-sop-head h3 { font-size: 22px; }.ai-sop-head > div p { font-size: 16px; }.ai-interaction-note { grid-template-columns: 1fr; gap: 6px; font-size: 14px; }.ai-sop-list { grid-template-columns: 1fr; }.ai-sop-list span { font-size: 17px; }
   .patent-grid { position: static; width: 100%; margin-top: 52px; grid-template-columns: 1fr; gap: 80px; }.patent-pair { grid-template-columns: 1fr 42%; gap: 18px; }.patent-pair figure:first-child img { width: 100%; height: 360px; }.patent-pair figure:last-child img { width: 100%; height: 360px; }.patent-grid > article > span { flex-direction: column; gap: 8px; }
   .evaluation-model, .evaluation-data { position: static; width: 100%; height: auto; margin-top: 48px; }.evaluation-model { overflow-x: auto; }.formula { width: 1030px; }.evaluation-data > div { gap: 22px; }.evaluation-data article strong { font-size: 38px; }
   .recognition-case, .award { position: static; width: 100%; margin-top: 48px; }.recognition-case img, .award > div { width: 100%; height: auto; aspect-ratio: 1.42; }.award > div img { object-fit: contain; }.award { margin-top: 70px; }
