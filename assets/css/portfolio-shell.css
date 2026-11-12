@@ -106,6 +106,8 @@
 .portfolio-footer-top:hover,
 .portfolio-footer-top:focus-visible { color: #101b2d; background: #8de2dc; outline: none; }
 
+.mobile-pan-hint { display: none; }
+
 @media (max-width: 720px), (max-aspect-ratio: 4/5) {
   :root { --portfolio-nav-height: 64px; }
   .portfolio-header { padding: 0 18px; }
@@ -119,7 +121,16 @@
   .portfolio-works-button i { width: 8px; height: 8px; }
   .portfolio-menu { right: -74px; width: min(286px, calc(100vw - 32px)); }
   .portfolio-menu a { padding: 14px 18px; font-size: 14px; }
+  .mobile-pan-hint { position: sticky; z-index: 20; left: 16px; bottom: 14px; width: max-content; display: flex; align-items: center; gap: 8px; margin: -48px 0 14px 16px; padding: 8px 12px; border: 1px solid rgba(132,225,215,.34); border-radius: 999px; color: #d9f7f2; background: rgba(7,19,33,.78); box-shadow: 0 8px 26px rgba(0,0,0,.22); backdrop-filter: blur(10px); font-size: 12px; letter-spacing: .04em; pointer-events: none; opacity: 1; transition: opacity .25s ease; }
+  .mobile-pan-hint::after { content: "→"; font-size: 16px; line-height: 1; animation: mobile-pan-arrow 1.4s ease-in-out infinite; }
+  .has-panned > .mobile-pan-hint { opacity: 0; }
   .portfolio-footer { min-height: 320px; padding: 44px 24px; grid-template-columns: 1fr; gap: 22px; }
   .portfolio-footer > a:not(.portfolio-footer-top) { min-height: 72px; }
   .portfolio-footer-top { position: absolute; right: 24px; bottom: 44px; }
+}
+
+@keyframes mobile-pan-arrow { 0%,100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-pan-hint::after { animation: none; }
 }

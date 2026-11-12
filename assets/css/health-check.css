@@ -87,7 +87,7 @@ img { display: block; }
   .hc-works-button i { width: 8px; height: 8px; }
   .hc-works-menu { right: -74px; width: min(286px, calc(100vw - 32px)); }
   .hc-works-menu a { padding: 14px 18px; font-size: 14px; }
-  .hc-screen { width: 100%; height: 540px; aspect-ratio: auto; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: rgba(97,213,201,.45) #071321; }
+  .hc-screen { width: 100%; height: 540px; aspect-ratio: auto; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-behavior: smooth; touch-action: pan-x pan-y; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: rgba(97,213,201,.45) #071321; }
   .hc-canvas { position: relative; width: 960px; height: 540px; }
   .hc-hero { height: 540px; }
   .hc-diagnosis-flow { height: 940px; }
