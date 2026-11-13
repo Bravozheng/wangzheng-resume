@@ -83,7 +83,6 @@ h1, h2, h3 { line-height: 1.18; }
 .hero { position: relative; min-height: 100svh; overflow: hidden; display: grid; place-items: center; padding: calc(var(--header-h) + 80px) var(--page-pad) 150px; color: var(--white); background: var(--navy); isolation: isolate; }
 .hero-background { position: absolute; inset: 0; z-index: -3; overflow: hidden; }
 .hero-background::before { content: ""; position: absolute; inset: -12px; background: url("../images/home/hero-background.jpg") center/cover no-repeat; filter: blur(5px) saturate(1.08) brightness(.82); transform: scale(1.015); }
-.hero-background::after { content: ""; position: absolute; inset: -8% -3% -8% 32%; background: url("../images/home/hero-organic-material.webp") 72% 68% / auto 114% no-repeat; opacity: 1; filter: saturate(1.32) contrast(1.08) brightness(1.16); -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.62) 18%, #000 46%, #000 92%, rgba(0,0,0,.7) 100%); mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.62) 18%, #000 46%, #000 92%, rgba(0,0,0,.7) 100%); }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: -2; background: linear-gradient(90deg, rgba(7,20,33,.86) 0%, rgba(7,20,33,.62) 42%, rgba(7,20,33,.22) 72%, rgba(7,20,33,.3) 100%), linear-gradient(180deg, rgba(7,20,33,.32), rgba(7,20,33,.16) 48%, rgba(7,20,33,.7)); }
 .hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(circle at 64% 46%, rgba(96,122,245,.18), transparent 40%); }
 .hero-grid { position: absolute; inset: 0; z-index: -1; opacity: .16; background-image: linear-gradient(rgba(193,208,213,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(193,208,213,.09) 1px, transparent 1px); background-size: 72px 72px; mask-image: linear-gradient(to bottom, #000, transparent 82%); }
@@ -261,7 +260,6 @@ h1, h2, h3 { line-height: 1.18; }
   .menu-open .menu-button span:nth-child(2) { transform: translateY(-4.5px) rotate(-45deg); }
   .hero { min-height: 100svh; padding: 128px var(--page-pad) 140px; }
   .hero-background::before { background-position: 58% center; filter: blur(5px) saturate(1.04) brightness(.76); }
-  .hero-background::after { inset: 1% -38% -6% 8%; background-position: 62% 68%; opacity: .78; }
   .hero .eyebrow { max-width: 300px; margin-inline: auto; line-height: 1.6; }
   .hero h1 { display: grid; gap: .05em; font-size: clamp(37px, 10vw, 48px); line-height: 1.3; letter-spacing: -.05em; }
   .hero h1 b { line-height: .65; }
